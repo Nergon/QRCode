@@ -121,13 +121,12 @@ class QRCode:
         return encoded_data
     
     def __encode_data_byte(self) -> BitArray:
-        """Encode the data into UTF-8 and then into Binary using BitArray.s"""
+        """Encode the data into UTF-8 and then into Binary using BitArray."""
         utf8 = self.data.encode("utf-8")
         return BitArray(bytes=utf8)
     
     def __add_error_correction(self, data : List[BitArray]) -> List[BitArray]:
         pass
-
  
 
     def make(self):
