@@ -338,3 +338,2230 @@ MAX_DATA_CODEWORDS = {
     39: [2812, 2216, 1582, 1222],
     40: [2956, 2334, 1666, 1276]
 }
+
+
+# Table with the number of blocks, codewords per block and nuber of data codewords in each block for each version and error correction level
+BLOCKS_TABLE = {
+    # [L, M, Q, H]
+    1: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 19,
+                "EC_CODEWORDS": 7
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 10
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 13,
+                "EC_CODEWORDS": 13
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 9,
+                "EC_CODEWORDS": 17
+            },
+            # Group 2
+            2: None
+        }
+    ],
+    2: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 34,
+                "EC_CODEWORDS": 10
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 28,
+                "EC_CODEWORDS": 16
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 22,
+                "EC_CODEWORDS": 22
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: None
+        }
+    ],
+    3: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 55,
+                "EC_CODEWORDS": 15
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 44,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 17,
+                "EC_CODEWORDS": 18
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 13,
+                "EC_CODEWORDS": 22
+            },
+            # Group 2
+            2: None
+        }
+    ],
+    4: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 80,
+                "EC_CODEWORDS": 20
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 32,
+                "EC_CODEWORDS": 18
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 9,
+                "EC_CODEWORDS": 16
+            },
+            # Group 2
+            2: None
+        }
+    ],
+    5: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 108,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 43,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 18
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 18
+            }
+        }
+    ],
+    6: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 68,
+                "EC_CODEWORDS": 18
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 27,
+                "EC_CODEWORDS": 16
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 19,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: None
+        }
+    ],
+    7: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 78,
+                "EC_CODEWORDS": 20
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 31,
+                "EC_CODEWORDS": 18
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 14,
+                "EC_CODEWORDS": 18
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 18
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 13,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 14,
+                "EC_CODEWORDS": 26
+            }
+        }
+    ],
+    8: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 97,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 38,
+                "EC_CODEWORDS": 22
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 39,
+                "EC_CODEWORDS": 22
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 18,
+                "EC_CODEWORDS": 22
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 19,
+                "EC_CODEWORDS": 22
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 14,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 26
+            }
+        }
+    ],
+    9: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 116,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 36,
+                "EC_CODEWORDS": 22
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 37,
+                "EC_CODEWORDS": 22
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 20
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 17,
+                "EC_CODEWORDS": 20
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 12,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 13,
+                "EC_CODEWORDS": 24
+            }
+        }
+    ],
+    10: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 68,
+                "EC_CODEWORDS": 18
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 69,
+                "EC_CODEWORDS": 18
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 43,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 44,
+                "EC_CODEWORDS": 26
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 19,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 20,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 28
+            }
+        }
+    ],
+    11: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 81,
+                "EC_CODEWORDS": 20
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 50,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 51,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 22,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 23,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 12,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 8,
+                "DATA_CODEWORDS": 13,
+                "EC_CODEWORDS": 24
+            }
+        }
+    ],
+    12: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 92,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 93,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 36,
+                "EC_CODEWORDS": 22
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 37,
+                "EC_CODEWORDS": 22
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 20,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 21,
+                "EC_CODEWORDS": 26
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 14,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 28
+            }
+        }
+    ],
+    13: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 107,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 8,
+                "DATA_CODEWORDS": 37,
+                "EC_CODEWORDS": 22
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 38,
+                "EC_CODEWORDS": 22
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 8,
+                "DATA_CODEWORDS": 20,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 21,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 12,
+                "DATA_CODEWORDS": 11,
+                "EC_CODEWORDS": 22
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 12,
+                "EC_CODEWORDS": 22
+            }
+        }
+    ],
+    14: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 115,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 116,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 40,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 41,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 11,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 20
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 17,
+                "EC_CODEWORDS": 20
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 11,
+                "DATA_CODEWORDS": 12,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 13,
+                "EC_CODEWORDS": 24
+            }
+        }
+    ],
+    15: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 87,
+                "EC_CODEWORDS": 22
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 88,
+                "EC_CODEWORDS": 22
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 41,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 42,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 11,
+                "DATA_CODEWORDS": 12,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 13,
+                "EC_CODEWORDS": 24
+            }
+        }
+    ],
+    16: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 98,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 99,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 45,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 15,
+                "DATA_CODEWORDS": 19,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 20,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 13,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 28
+            }
+        }
+    ],
+    17: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 107,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 108,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 22,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 15,
+                "DATA_CODEWORDS": 23,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 14,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 17,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 28
+            }
+        }
+    ],
+    18: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 120,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 121,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 9,
+                "DATA_CODEWORDS": 43,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 44,
+                "EC_CODEWORDS": 26
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 17,
+                "DATA_CODEWORDS": 22,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 23,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 14,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 19,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 28
+            }
+        }
+    ],
+    19: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 113,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 114,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 44,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 11,
+                "DATA_CODEWORDS": 45,
+                "EC_CODEWORDS": 26
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 17,
+                "DATA_CODEWORDS": 21,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 22,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 9,
+                "DATA_CODEWORDS": 13,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 16,
+                "DATA_CODEWORDS": 14,
+                "EC_CODEWORDS": 26
+            }
+        }
+    ],
+    20: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 107,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 108,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 41,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 13,
+                "DATA_CODEWORDS": 42,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 15,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 15,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 28
+            }
+        }
+    ],
+    21: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 116,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 117,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 17,
+                "DATA_CODEWORDS": 42,
+                "EC_CODEWORDS": 26
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 17,
+                "DATA_CODEWORDS": 22,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 23,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 19,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 17,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    22: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 111,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 112,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 17,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 16,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 34,
+                "DATA_CODEWORDS": 13,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: None
+        }
+    ],
+    23: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 121,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 122,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 48,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 11,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 16,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    24: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 117,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 118,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 45,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 11,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 16,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 30,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 17,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    25: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 8,
+                "DATA_CODEWORDS": 106,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 107,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 8,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 13,
+                "DATA_CODEWORDS": 48,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 22,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 22,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 13,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    26: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 114,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 115,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 19,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 28,
+                "DATA_CODEWORDS": 22,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 23,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 33,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 17,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    27: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 8,
+                "DATA_CODEWORDS": 122,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 123,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 22,
+                "DATA_CODEWORDS": 45,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 8,
+                "DATA_CODEWORDS": 23,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 26,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 12,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 28,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    28: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 117,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 118,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 45,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 23,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 31,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 11,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 31,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    29: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 116,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 117,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 21,
+                "DATA_CODEWORDS": 45,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 23,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 37,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 19,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 26,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    30: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 5,
+                "DATA_CODEWORDS": 115,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 116,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 19,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 48,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 15,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 25,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 23,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 25,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    31: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 13,
+                "DATA_CODEWORDS": 115,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 3,
+                "DATA_CODEWORDS": 116,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 29,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 42,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 23,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 28,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    32: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 17,
+                "DATA_CODEWORDS": 115,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: None
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 23,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 35,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 19,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 35,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    33: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 17,
+                "DATA_CODEWORDS": 115,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 116,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 21,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 29,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 19,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 11,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 46,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    34: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 13,
+                "DATA_CODEWORDS": 115,
+                "EC_CODEWORDS": 28
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 116,
+                "EC_CODEWORDS": 28
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 23,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 44,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 59,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 1,
+                "DATA_CODEWORDS": 17,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    35: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 12,
+                "DATA_CODEWORDS": 121,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 122,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 12,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 26,
+                "DATA_CODEWORDS": 48,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 39,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 22,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 41,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    36: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 121,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 122,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 34,
+                "DATA_CODEWORDS": 48,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 46,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 2,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 64,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    37: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 17,
+                "DATA_CODEWORDS": 122,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 123,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 29,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 49,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 24,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 46,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    38: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 122,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 18,
+                "DATA_CODEWORDS": 123,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 13,
+                "DATA_CODEWORDS": 46,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 32,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 48,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 14,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 42,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 32,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    39: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 20,
+                "DATA_CODEWORDS": 117,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 4,
+                "DATA_CODEWORDS": 118,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 40,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 7,
+                "DATA_CODEWORDS": 48,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 43,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 22,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 10,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 67,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ],
+    40: [
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 19,
+                "DATA_CODEWORDS": 118,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 6,
+                "DATA_CODEWORDS": 119,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 18,
+                "DATA_CODEWORDS": 47,
+                "EC_CODEWORDS": 24
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 31,
+                "DATA_CODEWORDS": 48,
+                "EC_CODEWORDS": 24
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 34,
+                "DATA_CODEWORDS": 24,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 34,
+                "DATA_CODEWORDS": 25,
+                "EC_CODEWORDS": 30
+            }
+        },
+        {
+            # Group 1
+            1: {
+                "BLOCKS": 20,
+                "DATA_CODEWORDS": 15,
+                "EC_CODEWORDS": 30
+            },
+            # Group 2
+            2: {
+                "BLOCKS": 61,
+                "DATA_CODEWORDS": 16,
+                "EC_CODEWORDS": 30
+            }
+        }
+    ]
+}
+
+REMAINDER_BITS = {
+    1: 0,
+    2: 7,
+    3: 7,
+    4: 7,
+    5: 7,
+    6: 7,
+    7: 0,
+    8: 0,
+    9: 0,
+    10: 0,
+    11: 0,
+    12: 0,
+    13: 0,
+    14: 3,
+    15: 3,
+    16: 3,
+    17: 3,
+    18: 3,
+    19: 3,
+    20: 3,
+    21: 4,
+    22: 4,
+    23: 4,
+    24: 4,
+    25: 4,
+    26: 4,
+    27: 4,
+    28: 3,
+    29: 3,
+    30: 3,
+    31: 3,
+    32: 3,
+    33: 3,
+    34: 3,
+    35: 0,
+    36: 0,
+    37: 0,
+    38: 0,
+    39: 0,
+    40: 0
+}

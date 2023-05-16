@@ -135,16 +135,18 @@ def rs_encode_msg(msg_in, nsym):
     '''Reed-Solomon main encoding function'''
     gen = rs_generator_poly(nsym)
 
+    msg_tmp = list(msg_in)
+
     # Pad the message, then divide it by the irreducible generator polynomial
-    _, remainder = gf_poly_div(msg_in + [0] * (len(gen)-1), gen)
+    _, remainder = gf_poly_div(msg_tmp + [0] * (len(gen)-1), gen)
     # The remainder is our RS code! Just append it to our original message to get our full codeword (this represents a polynomial of max 256 terms)
-    msg_out = msg_in + remainder
+    #msg_out = msg_in + remainder
     # Return the codeword
     return remainder
 
 init_tables(0x11d)
-msg_in =[32, 91, 11, 120, 209, 114, 220, 77, 67, 64, 236, 17, 236, 17, 236, 17]
-nsym = 10
+#msg_in =[32, 91, 11, 120, 209, 114, 220, 77, 67, 64, 236, 17, 236, 17, 236, 17]
+#nsym = 10
 
-print(rs_encode_msg(msg_in, nsym))
+#print(rs_encode_msg(msg_in, nsym))
 
