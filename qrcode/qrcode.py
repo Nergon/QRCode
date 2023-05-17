@@ -1,14 +1,16 @@
-import PIL
+from PIL import Image
 
 from typing import List
 from .enums import QRMode, QRErrorCorrectionLevel
 from .utils import calculate_best_qrmode, calculate_smallest_version, get_character_count_bits
-from .constants import ALPHANUMERIC_TABLE, MAX_DATA_CODEWORDS, BLOCKS_TABLE, REMAINDER_BITS
+from .constants import ALPHANUMERIC_TABLE, MAX_DATA_CODEWORDS, BLOCKS_TABLE, REMAINDER_BITS, ALIGNMENT_PATTERN_POSITIONS
 from .reed_solomon import rs_encode_msg
 
 from bitstring import BitArray
 
 from reedsolo import RSCodec
+
+import itertools
 
 class QRCode:
     
@@ -208,7 +210,146 @@ class QRCode:
 
         return encoded_data
             
-        
+    def __calculate_size(self) -> int:
+        """Returns the size of the QR Code in modules"""
+        # Formula: ((version - 1) * 4) + 21
+        return (((self.version - 1) * 4) + 21)
+    
+    def __setup_matrix(self) -> None:
+        """Creates the matrix and places finder patterns and alignment patterns and timing patterns."""
+        # Create matrix (-2) for empty
+        self.matrix = [[-2 for i in range(self.__calculate_size())] for j in range(self.__calculate_size())]
+        # Place finder patterns
+        self.__place_finder_pattern(0, 0)
+        self.__place_finder_pattern(self.__calculate_size() - 7, 0)
+        self.__place_finder_pattern(0, self.__calculate_size() - 7)
+        # Add seperators
+        for i in range(8):
+            self.matrix[7][i] = 0
+            self.matrix[i][7] = 0
+            self.matrix[self.__calculate_size() - 8][i] = 0
+            self.matrix[self.__calculate_size() - 8 + i][7] = 0
+            self.matrix[7][self.__calculate_size() - 8 + i] = 0
+            self.matrix[i][self.__calculate_size() - 8] = 0
+
+        # Place alignment patterns
+        cathesian = itertools.product(ALIGNMENT_PATTERN_POSITIONS[self.version], ALIGNMENT_PATTERN_POSITIONS[self.version])
+        for p in cathesian:
+            # Check if alignment pattern is not placed on finder pattern
+            if not (p[0] == 6 and p[1] == 6) and not (p[0] == 6 and p[1] == self.__calculate_size() - 7) and not (p[0] == self.__calculate_size() - 7 and p[1] == 6):
+                self.__place_alignment_pattern(p[0], p[1])
+
+        # Place timing patterns
+        for i in range(8, self.__calculate_size() - 8):
+            # If colliding with finder pattern skip
+            if len(ALIGNMENT_PATTERN_POSITIONS[self.version]) != 0:
+                for p in ALIGNMENT_PATTERN_POSITIONS[self.version]:
+                    if i > p-2 and i < p +2:
+                        continue
+                    if i % 2 == 0:
+                        self.matrix[6][i] = 1
+                        self.matrix[i][6] = 1
+                    else:
+                        self.matrix[6][i] = 0
+                        self.matrix[i][6] = 0
+            else:
+                if i % 2 == 0:
+                    self.matrix[6][i] = 1
+                    self.matrix[i][6] = 1
+                else:
+                    self.matrix[6][i] = 0
+                    self.matrix[i][6] = 0
+
+        # Reserve space for format information (-1)
+        if self.version < 7:
+             # If Version < 7 reserve a strip around the finder patterns
+            for i in range(9):
+                if i < 8:
+                    self.matrix[self.__calculate_size() - 8 + i][8] = -1
+                    self.matrix[8][self.__calculate_size() - 8 + i] = -1
+                # Skip alignment pattern
+                if i == 6:
+                    continue
+
+                self.matrix[8][i] = -1
+                self.matrix[i][8] = -1
+            # One Black Pixel at
+            self.matrix[8][self.__calculate_size() -8] = 1
+                    
+        else:
+            # Reserve 6x3 above bottom left and 3x6 on top right
+            for i in range(6):
+                for j in range(3):
+                    self.matrix[self.__calculate_size() - 11 + i][j] = -1
+                    self.matrix[j][self.__calculate_size() - 11 + i] = -1 
+
+    def __place_alignment_pattern(self, x : int, y: int) -> None:
+        x -= 2
+        y -= 2
+        for i in range(5):
+            for j in range(5):
+                if i == 0 or i == 4 or j == 0 or j == 4:
+                    self.matrix[x+i][y+j] = 1
+                elif i == 2 and j == 2:
+                    self.matrix[x+i][y+j] = 1
+                else:
+                    self.matrix[x+i][y+j] = 0
+
+    def __place_finder_pattern(self, x : int, y : int) -> None:
+        """Places a finder pattern at (x,y) in matrix and adds"""
+        for i in range(7):
+            for j in range(7):
+                if i % 6 == 0 or j % 6 == 0:
+                    self.matrix[x+i][y+j] = 1
+                elif i > 1 and i < 5 and j > 1 and j < 5:
+                    self.matrix[x+i][y+j] = 1
+                else:
+                    self.matrix[x+i][y+j] = 0
+
+    def __place_data(self, encoded_data) -> None:
+        """Places the encoded data in the matrix"""
+        # Data is placed in a zigzag pattern starting from the bottom
+        # -1 for upwars, 1 for downwards
+        print(encoded_data.bin)
+        direction = -1
+        col = self.__calculate_size() -1
+        row = self.__calculate_size() -1
+        data_bit_index = 0
+        is_left = False
+
+        # If vertical alignment pattern is present skip column
+        placecount = 0
+
+        while col >= 0:
+            if col == 6:
+                col -= 1
+
+            if self.matrix[col][row] == -2:
+                self.matrix[col][row] = encoded_data[data_bit_index]
+                data_bit_index += 1
+                placecount +=1 
+                
+
+            if is_left:
+                col += 1
+                row += direction
+            else:
+                col -= 1
+
+            is_left = not is_left
+
+            if row < 0 or row == self.__calculate_size():
+                direction = -direction
+                row += direction
+                if is_left:
+                    col -= 1
+                    is_left = False
+                else:
+                    col -= 2
+        print(row)
+        print(col)
+                
+
 
     def make(self):
         """Make the QR Code. Returns a 2D array of booleans."""
@@ -217,8 +358,11 @@ class QRCode:
         # Second add error correction
         encoded_data = self.__add_error_correction(encoded_data)
 
-        print(encoded_data)
-        # Third generate matrix
+        # Setup Matrix
+        self.__setup_matrix()
+        # Place Data in Matrix
+        self.__place_data(encoded_data)
+        
 
 
 
@@ -227,16 +371,20 @@ class QRCodeRenderer:
     @staticmethod
     def save(qrcode : 'QRCode', path : str) -> None:
         """Save the QR Code to a .png file."""
-        if(qrcode.List[List[bool]] == None):
+        if(qrcode.matrix == None):
             raise ValueError("QRCode has not been made yet.")
         
-        image = PIL.Image.new("RGB", (len(qrcode.List[List[bool]]), len(qrcode.List[List[bool]])))
+        image = Image.new("RGB", (len(qrcode.matrix), len(qrcode.matrix)))
         pixels = image.load()
 
-        for i in range(len(qrcode.List[List[bool]])):
-            for j in range(len(qrcode.List[List[bool]])):
-                if qrcode.List[List[bool]][i][j]:
+        for i in range(len(qrcode.matrix)):
+            for j in range(len(qrcode.matrix)):
+                if qrcode.matrix[i][j] == 1: 
                     pixels[i, j] = (0, 0, 0)
+                elif qrcode.matrix[i][j] == -1:
+                    pixels[i,j] = (0, 0, 255)
+                elif qrcode.matrix[i][j] == -2:
+                    pixels[i,j] = (0, 255, 255)
                 else:
                     pixels[i, j] = (255, 255, 255)
 
