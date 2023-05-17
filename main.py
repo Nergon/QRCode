@@ -4,4 +4,4 @@ from qrcode.enums import QRErrorCorrectionLevel
 if __name__ == "__main__":
     qr = QRCode("HELLO WORLD", QRErrorCorrectionLevel.H)
     qr.make()
-    QRCodeRenderer.save(qr, "test.png")
+    QRCodeRenderer.save(qr, "test.png", 10)

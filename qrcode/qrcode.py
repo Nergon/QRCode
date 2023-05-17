@@ -464,24 +464,32 @@ class QRCode:
 class QRCodeRenderer:
     
     @staticmethod
-    def save(qrcode : 'QRCode', path : str) -> None:
-        """Save the QR Code to a .png file."""
+    def save(qrcode : 'QRCode', path : str, size = 1) -> None:
+        """Save the QR Code to a .png file. Size is the size of each module in pixels."""
         if(qrcode.matrix == None):
             raise ValueError("QRCode has not been made yet.")
         
-        image = Image.new("RGB", (len(qrcode.matrix), len(qrcode.matrix)))
+        image = Image.new("RGB", (len(qrcode.matrix)*size, len(qrcode.matrix)*size))
         pixels = image.load()
 
         for i in range(len(qrcode.matrix)):
             for j in range(len(qrcode.matrix)):
                 if qrcode.matrix[i][j] == 1 or qrcode.matrix[i][j] == -3: 
-                    pixels[i, j] = (0, 0, 0)
+                    for x in range(size):
+                        for y in range(size):
+                            pixels[i*size+x, j*size+y] = (0, 0, 0)
                 elif qrcode.matrix[i][j] == -1:
-                    pixels[i,j] = (0, 0, 255)
+                    for x in range(size):
+                        for y in range(size):
+                            pixels[i*size+x, j*size+y] = (0, 0, 255)
                 elif qrcode.matrix[i][j] == -2:
-                    pixels[i,j] = (0, 255, 255)
+                    for x in range(size):
+                        for y in range(size):
+                            pixels[i*size+x, j*size+y] = (0, 255, 255)
                 else:
-                    pixels[i, j] = (255, 255, 255)
+                    for x in range(size):
+                        for y in range(size):
+                            pixels[i*size+x, j*size+y] = (255, 255, 255)
 
         image.save(path)
         image.show()
