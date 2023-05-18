@@ -110,6 +110,8 @@ def calc_mask(mask, matrix):
                 new_matrix[i][j] = 1
             elif new_matrix[i][j] == -4:
                 new_matrix[i][j] = 0
+            elif new_matrix[i][j] == -2:
+                new_matrix[i][j] = 0
     return new_matrix
 
 def calculate_penalty_score(matrix):
@@ -121,6 +123,8 @@ def calculate_penalty_score(matrix):
         current_color = matrix[i][0]
         current_count = 1
         for j in range(1,len(matrix[i])):
+            if matrix[i][j] == -1:
+                continue
             if matrix[i][j] == current_color:
                 current_count += 1
             else:
@@ -136,6 +140,8 @@ def calculate_penalty_score(matrix):
         current_color = matrix[0][i]
         current_count = 1
         for j in range(1,len(matrix)):
+            if matrix[i][j] == -1:
+                continue
             if matrix[j][i] == current_color:
                 current_count += 1
             else:
@@ -146,25 +152,35 @@ def calculate_penalty_score(matrix):
         if current_count >= 5:
             score += 3 + (current_count - 5)
 
+    print("First: " + str(score))
+
     # Second condition:
     # Add 3 to penalty score for each 2x2  block of same color making sure to count overlapping blocks
+    second_score = 0
     for i in range(len(matrix) - 1):
-        for j in range(len(matrix[i]) - 1):
+        for j in range(len(matrix) - 1):
+            if matrix[i][j] == -1:
+                continue
             if matrix[i][j] == matrix[i][j+1] == matrix[i+1][j] == matrix[i+1][j+1]:
-                score += 3
+                second_score += 3
+
+    print("Second: " + str(second_score))
 
     # Third condition:
     # Loom for followining patterns: 00001011101 or 10111010000 and add 40 to penalty score for each horizontal or vertical pattern
+    third_score = 0
     # Check horizontal patterns
     for i in range(len(matrix)):
         for j in range(len(matrix[i]) - 10):
             if matrix[i][j:j+11] == [0,0,0,0,1,0,1,1,1,0,1] or matrix[i][j:j+11] == [1,0,1,1,1,0,1,0,0,0,0]:
-                score += 40
+                third_score += 40
     # Check vertical patterns
     for i in range(len(matrix) - 10):
         for j in range(len(matrix[i])):
             if [matrix[i+k][j] for k in range(11)] == [0,0,0,0,1,0,1,1,1,0,1] or [matrix[i+k][j] for k in range(11)] == [1,0,1,1,1,0,1,0,0,0,0]:
-                score += 40
+                third_score += 40
+
+    score += third_score
 
     # Fourth condition:
     # 1. Count the number of total modules in the matrix
@@ -188,5 +204,6 @@ def calculate_penalty_score(matrix):
     next_difference /= 5
     # 7. Take the lowest value and multiply by 10 and add to penalty score
     score += min(previous_difference,next_difference) * 10
+    
     return score
 

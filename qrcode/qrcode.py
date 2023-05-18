@@ -40,13 +40,14 @@ class QRCode:
             data.append(BitArray(bin="0010"))
         elif self.mode == QRMode.BYTE:
             data.append(BitArray(bin="0100"))
+            self.data = self.data.encode("utf-8")
         else:
             raise ValueError("Invalid QRMode")
         
         # Add character count indicator
         neededBits : int = get_character_count_bits(self.mode, self.version)
 
-        characterCount = BitArray(uint=len(self.data), length=neededBits)
+        characterCount = BitArray(uint=int(len(self.data)), length=neededBits)
 
         data.append(characterCount)
 
@@ -64,7 +65,7 @@ class QRCode:
         # The QR Code specification defines that the data must use the full aviable length of bits
         # First determine the maximum length of the data
         max_length = MAX_DATA_CODEWORDS[self.version][self.correction.value] * 8
-        print(max_length)
+
         # Add up to 4 zeros at the end if the data is too short
         if len(data) <= max_length - 4:
             data.append(BitArray(bin="0000"))
@@ -127,8 +128,7 @@ class QRCode:
     
     def __encode_data_byte(self) -> BitArray:
         """Encode the data into UTF-8 and then into Binary using BitArray."""
-        utf8 = self.data.encode("utf-8")
-        return BitArray(bytes=utf8)
+        return BitArray(bytes=self.data)
     
     def __add_error_correction(self, data : List[BitArray]) -> List[BitArray]:
         """Add error correction to the data using Reed-Solomon."""
@@ -152,10 +152,11 @@ class QRCode:
 
         for i in range(group1_blocks_count):
             group1.append([int(data[i * group1_blocks_datawords + j].uint) for j in range(group1_blocks_datawords)])
-        
-        
+
+        already_placed = (group1_blocks_count * group1_blocks_datawords)
+
         for i in range(group2_blocks_count):
-            group2.append([int(data[i * group2_blocks_datawords + j].uint) for j in range(group2_blocks_datawords)])
+            group2.append([int(data[already_placed + i * group2_blocks_datawords + j].uint) for j in range(group2_blocks_datawords)])
 
         # Add error correction to each block
         for i in range(len(group1)):
@@ -164,6 +165,7 @@ class QRCode:
         if BLOCKS_TABLE[self.version][self.correction.value][2] is not None:
             for i in range(len(group2)):
                 group2_codewords.append(rs_encode_msg(group2[i], codewords))
+                print(group2_codewords)
         
         # Struture the data into a list of BitArrays with the correct order
         interleaved_data = []
@@ -182,14 +184,13 @@ class QRCode:
             blocks = group1 + group2
             codewords_data = group1_codewords + group2_codewords
 
-            print(codewords_data)
-
             # Interleave the blocks
             # First get max length of blocks
             max_length = max(len(block) for block in blocks)
             for i in range(max_length):
                 for block in blocks:
                     if i < len(block):
+                        print(hex(block[i]))
                         interleaved_data.append(block[i])
 
             # Interleave the codewords
@@ -199,8 +200,6 @@ class QRCode:
                     if i < len(codewords):
                         interleaved_data.append(codewords[i])
 
-
-        print(interleaved_data)
         # Convert into BitArray
         encoded_data = BitArray()
         for i in range(len(interleaved_data)):
@@ -210,6 +209,7 @@ class QRCode:
         if REMAINDER_BITS[self.version] != 0:
             encoded_data.append(BitArray(length=REMAINDER_BITS[self.version], uint=0))
 
+        print(encoded_data.bin)
         return encoded_data
             
     def __calculate_size(self) -> int:
@@ -282,8 +282,8 @@ class QRCode:
             # Reserve 6x3 above bottom left and 3x6 on top right
             for i in range(6):
                 for j in range(3):
-                    self.matrix[self.__calculate_size() - 11 + i][j] = -1
-                    self.matrix[j][self.__calculate_size() - 11 + i] = -1 
+                    self.matrix[self.__calculate_size() - 11 + j][i] = -1
+                    self.matrix[i][self.__calculate_size() - 11 + j] = -1 
 
     def __place_alignment_pattern(self, x : int, y: int) -> None:
         x -= 2
@@ -312,7 +312,6 @@ class QRCode:
         """Places the encoded data in the matrix"""
         # Data is placed in a zigzag pattern starting from the bottom
         # -1 for upwars, 1 for downwards
-        print(encoded_data.bin)
         direction = -1
         col = self.__calculate_size() -1
         row = self.__calculate_size() -1
@@ -366,7 +365,8 @@ class QRCode:
         
         self.matrix = best_mask
         self.mask = best_mask_index
-        print(best_mask_index)
+
+        print("Best mask: " + str(best_mask_index))
 
     def __add_format_information(self):
         encoded_info = BitArray(uint=QRErrorCorrectionLevel.to_bit_integer(self.correction), length=2)
@@ -377,8 +377,6 @@ class QRCode:
         # QR Code specification says to XOR with this string 101010000010010
         xor_string = BitArray(bin="101010000010010")
         encoded_info ^= xor_string
-
-        print(encoded_info.bin)
 
         # Place top left under finder pattern
         for i in range(8):
@@ -403,8 +401,6 @@ class QRCode:
             self.matrix[8][self.__calculate_size() - i - 1] = int(encoded_info[i])
 
         
-
-
     def __generate_error_correction_format(self, info):
         # Generatorpolynomial is 10100110111
         polonomial = BitArray(bin="10100110111")
@@ -443,6 +439,49 @@ class QRCode:
         trimmed_bit_array = BitArray(bin=trimmed_bit_string)
 
         return trimmed_bit_array
+    
+    def __add_version_information(self):
+        encoded_info = BitArray(uint=self.version, length=6)
+        encoded_info.append(self.__generate_error_correction_version(encoded_info))
+        
+        # Place bottom left at the top of the finder pattern with the right bits being the first
+        for i in range(6):
+            for j in range(3):
+                self.matrix[i][self.__calculate_size() - 7 - (3 - j) - 1] = encoded_info[len(encoded_info) - 1 - (i*3 + j)]
+
+        # Place at the top right of the finder pattern with the right bits being the first
+        for i in range(6):
+            for j in range(3):
+                self.matrix[self.__calculate_size() - 7 - (3 - j) - 1][i] = encoded_info[len(encoded_info) - 1 - (i*3 + j)]
+
+
+    def __generate_error_correction_version(self, info):
+        # Generator poloynomial is 1111100100101
+        polonomial = BitArray(bin="1111100100101")
+        # Pad to 18 bits
+        info = BitArray(bin=info.bin)
+        info.append(BitArray(uint=0, length=12))
+
+        self.remove_leading_zeros(info)
+
+        while len(info) >= len(polonomial):
+            # Pad generator string with zeros to make it same lenght as the current format string
+            appended_polonomial = BitArray(bin=polonomial.bin)
+            if len(info) -  len(polonomial) > 0:
+                appended_polonomial.append(BitArray(uint=0, length=len(info) - len(polonomial)))
+            
+            # XOR
+            info ^= appended_polonomial
+            # Remove leading zeros
+            info = self.remove_leading_zeros(info)
+
+        # Pad with zeros to make it 10 bits long
+        if abs(12-len(info)) > 0:
+            info.prepend(BitArray(uint=0, length=abs(12-len(info))))
+        
+        return info
+
+
 
     def make(self):
         """Make the QR Code. Returns a 2D array of booleans."""
@@ -450,6 +489,7 @@ class QRCode:
         encoded_data : List[BitArray] = self.__encode_data()
         # Second add error correction
         encoded_data = self.__add_error_correction(encoded_data)
+        print(encoded_data)
         # Setup Matrix
         self.__setup_matrix()
         # Place Data in Matrix
@@ -459,6 +499,8 @@ class QRCode:
         # Add format information
         self.__add_format_information()
         # Add version information if needed
+        if self.version >= 7:
+            self.__add_version_information()
 
 
 class QRCodeRenderer:
