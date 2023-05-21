@@ -10,6 +10,8 @@ from bitstring import BitArray
 
 from reedsolo import RSCodec
 
+from copy import deepcopy
+
 import math
 
 import itertools
@@ -326,7 +328,7 @@ class QRCode:
                 col -= 1
 
             if self.matrix[col][row] == -2:
-                self.matrix[col][row] = encoded_data[data_bit_index]
+                self.matrix[col][row] = int(encoded_data[data_bit_index])
                 data_bit_index += 1
                 placecount +=1 
                 
@@ -353,12 +355,20 @@ class QRCode:
         min_penalty = -1
         best_mask = None
         best_mask_index = -1
+        self.old_matrix = deepcopy(self.matrix)
         for i in range(8):
-            mask = calc_mask(i, self.matrix)
-            penalty = calculate_penalty_score(mask)
+            # Format information is also evaluated in the penalty score
+            self.mask = i
+            # Add format information
+            self.matrix = calc_mask(i, self.old_matrix)
+            self.__add_format_information()
+            # Add version information if needed
+            if self.version >= 7:
+                self.__add_version_information()
+            penalty = calculate_penalty_score(self.matrix)
             if min_penalty == -1 or penalty < min_penalty:
                 min_penalty = penalty
-                best_mask = mask
+                best_mask = deepcopy(self.matrix)
                 best_mask_index = i
 
         #self.matrix = calc_mask(2, self.matrix)
@@ -394,7 +404,7 @@ class QRCode:
 
         # Place top right at the bottom of the finder pattern
         for i in range(8):
-            self.matrix[self.__calculate_size() - i - 1][8] = int(encoded_info[i+7])
+            self.matrix[self.__calculate_size() -(7 - i) - 1][8] = int(encoded_info[i+7])
 
         # Place bottom left at the right side of the finder pattern
         for i in range(7):
@@ -496,11 +506,6 @@ class QRCode:
         self.__place_data(encoded_data)
         # Masking
         self.__choose_mask()
-        # Add format information
-        self.__add_format_information()
-        # Add version information if needed
-        if self.version >= 7:
-            self.__add_version_information()
 
 
 class QRCodeRenderer:
@@ -528,6 +533,10 @@ class QRCodeRenderer:
                     for x in range(size):
                         for y in range(size):
                             pixels[i*size+x, j*size+y] = (0, 255, 255)
+                elif qrcode.matrix[i][j] == -5:
+                    for x in range(size):
+                        for y in range(size):
+                            pixels[i*size+x, j*size+y] = (255, 0, 0)
                 else:
                     for x in range(size):
                         for y in range(size):
@@ -536,4 +545,4 @@ class QRCodeRenderer:
         image.save(path)
         image.show()
 
-        
+    

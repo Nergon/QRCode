@@ -130,17 +130,19 @@ def calculate_penalty_score(matrix):
             else:
                 if current_count >= 5:
                     score += 3 + (current_count - 5)
+                    print(3 + (current_count - 5))
                 current_color = matrix[i][j]
                 current_count = 1
         if current_count >= 5:
             score += 3 + (current_count - 5)
+            print(3 + (current_count - 5))
 
     # Check columns
     for i in range(len(matrix[0])):
         current_color = matrix[0][i]
         current_count = 1
         for j in range(1,len(matrix)):
-            if matrix[i][j] == -1:
+            if matrix[j][i] == -1:
                 continue
             if matrix[j][i] == current_color:
                 current_count += 1
@@ -164,21 +166,36 @@ def calculate_penalty_score(matrix):
             if matrix[i][j] == matrix[i][j+1] == matrix[i+1][j] == matrix[i+1][j+1]:
                 second_score += 3
 
+    score += second_score
+
     print("Second: " + str(second_score))
 
     # Third condition:
     # Loom for followining patterns: 00001011101 or 10111010000 and add 40 to penalty score for each horizontal or vertical pattern
     third_score = 0
     # Check horizontal patterns
+    
+    # Extend matrix by 4 with white on each side to count patterns that are cut off
+    extended_matrix = []
+    for i in range(4):
+        extended_matrix.append([0 for i in range(len(matrix[0])+8)])
     for i in range(len(matrix)):
-        for j in range(len(matrix[i]) - 10):
-            if matrix[i][j:j+11] == [0,0,0,0,1,0,1,1,1,0,1] or matrix[i][j:j+11] == [1,0,1,1,1,0,1,0,0,0,0]:
+        extended_matrix.append([0,0,0,0] + matrix[i] + [0,0,0,0])
+    for i in range(4):
+        extended_matrix.append([0 for i in range(len(matrix[0])+8)])
+
+
+    for i in range(len(extended_matrix)):
+        for j in range(len(extended_matrix[i])-11):
+            if extended_matrix[i][j:j+12] == [0,0,0,0,1,0,1,1,1,0,1,0] or extended_matrix[i][j:j+12] == [0,1,0,1,1,1,0,1,0,0,0,0]:
                 third_score += 40
     # Check vertical patterns
-    for i in range(len(matrix) - 10):
-        for j in range(len(matrix[i])):
-            if [matrix[i+k][j] for k in range(11)] == [0,0,0,0,1,0,1,1,1,0,1] or [matrix[i+k][j] for k in range(11)] == [1,0,1,1,1,0,1,0,0,0,0]:
+    for i in range(len(extended_matrix) - 11):
+        for j in range(len(extended_matrix[i])):
+            if [extended_matrix[i+k][j] for k in range(12)] == [0,0,0,0,1,0,1,1,1,0,1,0] or [extended_matrix[i+k][j] for k in range(12)] == [0,1,0,1,1,1,0,1,0,0,0,0]:
                 third_score += 40
+
+    print("Third: " + str(third_score))
 
     score += third_score
 
@@ -204,6 +221,9 @@ def calculate_penalty_score(matrix):
     next_difference /= 5
     # 7. Take the lowest value and multiply by 10 and add to penalty score
     score += min(previous_difference,next_difference) * 10
+
+    print("Fourth: " + str(min(previous_difference,next_difference) * 10))
+    print("Penalty: "+ str(score))
     
     return score
 
